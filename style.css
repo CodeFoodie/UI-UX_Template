@@ -35,7 +35,7 @@ html {
 
 .ytp-pause-overlay
  {
-    bottom:-200px; //give !important if not working
+    bottom:-200px; 
  }
 
 .enlarge {
@@ -172,6 +172,30 @@ button:focus {
 
 iframe {
 	border: none;
+}
+
+.mu-book-now-btn:hover {
+	background-color: greenyellow !important;
+}
+
+.white {
+	color: white;
+}
+
+#form-messages {
+	border-color: yellow;
+}
+
+.false {
+	color: red;
+	text-align: center;
+	border-color: red !important;
+}
+
+.true {
+	color: green;
+	text-align: center;
+	border-color: green !important;
 }
 
 
