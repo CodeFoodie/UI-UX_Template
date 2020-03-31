@@ -8,7 +8,7 @@ $(function(){
   };
 });
 
-const sendMail = () => {
+const sendMail = async () => {
     let subject = document.getElementById('subject').value;
     let name = document.getElementById('name').value;
     let email = document.getElementById('email').value;
@@ -44,11 +44,11 @@ const sendMail = () => {
   });
 
 
-  fetch(req)
+  await fetch(req)
     .then(resp => resp.json())
     .then((data) => {
       if (data.suceess) {
-        document.getElementById('form-messages').innerHTML = `<div class="dialog true"> We have received your feedback and would get to you shortly, </br>Thanks so much...</div>`;
+        document.getElementById('form-messages').innerHTML = `<div class="true"> We have received your feedback and would get to you shortly, </br>Thanks so much...</div>`;
         document.getElementById('form-messages').class = 'true';
         document.getElementById('subject').value = '';
         document.getElementById('name').value = '';
@@ -62,7 +62,7 @@ const sendMail = () => {
         for (let key in errs) {
           errorValues = errorValues + `${errs[key]} </br>`;
         }
-        document.getElementById('form-messages').innerHTML = `<div class="dialog false"> ${errorValues} </div>`;
+        document.getElementById('form-messages').innerHTML = `<div class="false"> ${errorValues} </div>`;
         document.getElementById('form-messages').class = 'false';
         document.getElementById('subject').focus();
         return false;
