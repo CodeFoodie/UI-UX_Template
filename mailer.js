@@ -20,14 +20,17 @@ const sendMail = async () => {
       return false;
     }
 
-    if(message.trim() == ''){
-      document.getElementById('message').value = '';
-      document.getElementById('message').focus();
-      return false;
+    if(subject.trim() === '' || subject.trim().length < 5 ){
+      document.getElementById('form-messages').innerHTML = `<div class="false">Please provide a reasonable subject</div>`;
+      document.getElementById('subject').focus();
+      return false; 
+    } else {
+      document.getElementById('form-messages').innerHTML = '';
     }
 
-    if(message.trim() != '' && message.trim().length < 8 ){
-     return false; 
+    if(message.trim() === '' || message.trim().length < 8 ){
+      document.getElementById('message').focus();
+      return false; 
     }
     
     message = `${name} ${email} </br> ${message}`;
