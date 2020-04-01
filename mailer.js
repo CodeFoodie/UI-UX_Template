@@ -1,3 +1,5 @@
+let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 $(function(){
   document.getElementById('message').oninput= function () {
     if(this.value.length < 8){
@@ -13,6 +15,10 @@ const sendMail = async () => {
     let name = document.getElementById('name').value;
     let email = document.getElementById('email').value;
     let message = document.getElementById('message').value;
+
+    if(!re.test(String(email).toLowerCase())){
+      return false;
+    }
 
     if(message.trim() == ''){
       document.getElementById('message').value = '';
@@ -44,9 +50,8 @@ const sendMail = async () => {
   });
 
 
-  await fetch(req)
-    .then(resp => resp.json())
-    .then((data) => {
+  const response = await fetch(req);
+  const data = await response.json();
       if (data.suceess) {
         document.getElementById('form-messages').innerHTML = `<div class="true"> We have received your feedback and would get to you shortly, </br>Thanks so much...</div>`;
         document.getElementById('form-messages').class = 'true';
@@ -67,7 +72,5 @@ const sendMail = async () => {
         document.getElementById('subject').focus();
         return false;
       }
-
-    });
   return false;
 }
